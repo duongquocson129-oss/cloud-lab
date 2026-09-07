@@ -108,7 +108,7 @@ function App() {
       <header className="topbar">
         <div>
           <p className="eyebrow">MERN CRUD Lab</p>
-          <h1>Quản lý sinh viên</h1>
+          <h1>Quản lý sinh viên v2.0</h1>
         </div>
       </header>
 
