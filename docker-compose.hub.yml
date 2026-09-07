@@ -1,6 +1,6 @@
 services:
   backend:
-    image: ${DOCKERHUB_USERNAME}/mern-backend:${IMAGE_TAG:-1.0}
+    image: ${DOCKERHUB_USERNAME}/mern-backend:${BACKEND_TAG:-1.0}
     container_name: mern-backend-hub
     ports:
       - "5000:5000"
@@ -16,7 +16,7 @@ services:
       - mern-network
 
   frontend:
-    image: ${DOCKERHUB_USERNAME}/mern-frontend:${IMAGE_TAG:-1.0}
+    image: ${DOCKERHUB_USERNAME}/mern-frontend:${FRONTEND_TAG:-1.0}
     container_name: mern-frontend-hub
     ports:
       - "5173:5173"
