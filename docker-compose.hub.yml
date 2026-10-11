@@ -7,6 +7,8 @@ services:
     environment:
       PORT: 5000
       MONGODB_URI: ${MONGODB_URI:-}
+      CLIENT_URL: ${CLIENT_URL:-http://localhost:5173}
+      NODE_ENV: ${NODE_ENV:-development}
     healthcheck:
       test: ["CMD", "wget", "-qO-", "http://127.0.0.1:5000/api/hello"]
       interval: 10s
@@ -22,6 +24,7 @@ services:
       - "5173:5173"
     environment:
       API_PROXY_TARGET: http://backend:5000
+      VITE_API_URL: ${VITE_API_URL:-http://localhost:5000}
     depends_on:
       backend:
         condition: service_healthy

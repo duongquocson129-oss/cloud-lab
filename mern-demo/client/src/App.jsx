@@ -7,6 +7,8 @@ const emptyForm = {
   email: '',
 }
 
+const API_BASE_URL = (import.meta.env.VITE_API_URL || '').replace(/\/$/, '')
+
 function App() {
   const [students, setStudents] = useState([])
   const [form, setForm] = useState(emptyForm)
@@ -14,9 +16,11 @@ function App() {
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(true)
 
+  const getApiUrl = (path) => `${API_BASE_URL}${path}`
+
   const fetchStudents = async () => {
     try {
-      const response = await fetch('/api/students')
+      const response = await fetch(getApiUrl('/api/students'))
       const data = await response.json()
       setStudents(Array.isArray(data) ? data : [])
       setError('')
@@ -58,7 +62,7 @@ function App() {
       }
 
       const response = await fetch(
-        editingId ? `/api/students/${editingId}` : '/api/students',
+        editingId ? getApiUrl(`/api/students/${editingId}`) : getApiUrl('/api/students'),
         requestOptions
       )
 
@@ -89,7 +93,7 @@ function App() {
 
   const handleDelete = async (id) => {
     try {
-      const response = await fetch(`/api/students/${id}`, { method: 'DELETE' })
+      const response = await fetch(getApiUrl(`/api/students/${id}`), { method: 'DELETE' })
       const data = await response.json()
 
       if (!response.ok) {
